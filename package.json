@@ -1,0 +1,29 @@
+{
+  "name": "karma-webdriver-launcher",
+  "version": "0.0.1",
+  "description": "A Karma plugin. Launcher for Remote WebDriver instances.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://bitbucket.org/hindsightsoftwareltd/karma-webdriver-launcher.git"
+  },
+  "keywords": [
+    "karma-plugin",
+    "launcher",
+    "WebDriver"
+  ],
+  "author": "Alan Parkinson <alan.parkinson@hindsightsoftware.co.uk>",
+  "contributors": [
+    "Jack Bastow <jack.bastow@hindsightsoftware.co.uk>"
+  ],
+  "dependencies": {
+    "wd": "0.0.32"
+  },
+  "peerDependencies": {
+    "karma": "~0.9"
+  },
+  "license": "MIT"
+}
