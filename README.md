@@ -3,13 +3,16 @@ karma-webdriver-launcher
 
 A plugin for Karma 0.9.2 to launch WebDriver instances
 
-Uses a forked copy of [Karma] with [CustomLauncherPullRequest] applied. Hopefully this will change once the Pull Request
-is applied ;)
-
 ## Usage
 
+This is to build and use with our forked copy of [Karma] which has [CustomLauncherPullRequest] applied.
+Requires grunt-cli to be installed
+
 ```bash
-$ npm install -g git://github.com/hindsightsoftware/karma.git#webdriver
+$ git clone git://github.com/hindsightsoftware/karma.git -b webdriver && cd karma
+$ npm install
+$ grunt build
+$ npm install -g
 $ npm install -g git://github.com/hindsightsoftware/karma-webdriver-launcher.git
 ```
 
