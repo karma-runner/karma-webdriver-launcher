@@ -8,8 +8,10 @@ var WebDriverInstance = function (baseBrowserDecorator, args) {
   baseBrowserDecorator(this);
 
   this.kill = function(callback) {
-    self.browser.quit();
-    callback();
+    self.browser.quit(function() {
+      console.log('Killed ' + spec.name + '.');
+      callback();
+    });
   }
 
   this._start = function (url) {
