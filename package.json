@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://bitbucket.org/hindsightsoftwareltd/karma-webdriver-launcher.git"
+    "url": "git://github.com/karma-runner/karma-webdriver-launcher.git"
   },
   "keywords": [
     "karma-plugin",
