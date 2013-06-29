@@ -3,13 +3,11 @@ karma-webdriver-launcher
 
 A plugin for Karma 0.9.3 to launch Remote WebDriver instances
 
-## Installation
+## Usage
 
 ```bash
-$ npm install -g git://github.com/karma-runner/karma-webdriver-launcher.git
+$ npm install karma-webdriver-launcher
 ```
-
-## Usage
 
 In your karma.conf.js file (e.g. using SauceLabs Connect - you need to have a scout tunnel open for this to work!):
 
