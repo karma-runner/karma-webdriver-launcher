@@ -16,9 +16,7 @@ module.exports = function(karma) {
 
   var webdriverConfig = {
     url: 'ondemand.saucelabs.com',
-    port: 80,
-    user: 'username',
-    key: 'saucelabs-api-key'
+    port: 80
   }
 
 
@@ -32,12 +30,10 @@ module.exports = function(karma) {
         'IE7': {
           base: 'WebDriver',
 		  config: webdriverConfig,
-		  spec: {
-			browserName: 'internet explorer',
-			platform: 'Windows XP',
-			version: '7',
-			name: 'Karma'
-		  }
+		  browserName: 'internet explorer',
+		  platform: 'Windows XP',
+		  version: '7',
+		  name: 'Karma'
 	    }
       },	  
 

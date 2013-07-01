@@ -2,10 +2,23 @@ var fs = require('fs');
 var wd = require('wd');
 
 var WebDriverInstance = function (baseBrowserDecorator, args) {
-  var config = args.config;
-  var spec = args.spec;
+  var config = args.config || {
+    url: '127.0.0.1',
+    port: 4444
+  };
+  var spec = {
+    browserName: args.browserName,
+    version: args.version || '',
+    platform: args.platform || 'ANY',
+    tags: args.tags || [],
+    name: args.testName || 'Karma test'
+  };
   var self = this;
+
   baseBrowserDecorator(this);
+
+  this.name = spec.browserName + ' via Remote WebDriver';
+
 
   this.kill = function(callback) {
     self.browser.quit(function() {
@@ -15,7 +28,7 @@ var WebDriverInstance = function (baseBrowserDecorator, args) {
   }
 
   this._start = function (url) {
-    self.browser = wd.remote(config.url, config.port, config.user, config.key);
+    self.browser = wd.remote(config.url, config.port);
     self.browser.init(spec, function () {
       self.browser.get(url);
     });
