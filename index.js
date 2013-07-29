@@ -3,7 +3,7 @@ var wd = require('wd');
 
 var WebDriverInstance = function (baseBrowserDecorator, args) {
   var config = args.config || {
-    url: '127.0.0.1',
+    hostname: '127.0.0.1',
     port: 4444
   };
   var spec = {
@@ -28,7 +28,7 @@ var WebDriverInstance = function (baseBrowserDecorator, args) {
   }
 
   this._start = function (url) {
-    self.browser = wd.remote(config.url, config.port);
+    self.browser = wd.remote(config);
     self.browser.init(spec, function () {
       self.browser.get(url);
     });
