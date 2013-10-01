@@ -1,6 +1,6 @@
 {
   "name": "karma-webdriver-launcher",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "A Karma plugin. Launcher for Remote WebDriver instances.",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "Jack Bastow <jack.bastow@hindsightsoftware.co.uk>"
   ],
   "dependencies": {
-    "wd": "0.0.32"
+    "wd": "0.1.5"
   },
   "peerDependencies": {
     "karma": ">=0.9"
