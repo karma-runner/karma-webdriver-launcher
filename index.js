@@ -28,7 +28,7 @@ var WebDriverInstance = function (baseBrowserDecorator, args) {
   }
 
   this._start = function (url) {
-    self.browser = wd.remote(config);
+    self.browser = wd.remote(config.hostname, config.port);
     self.browser.init(spec, function () {
       self.browser.get(url);
     });
