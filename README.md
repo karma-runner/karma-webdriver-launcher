@@ -15,8 +15,10 @@ In your karma.conf.js file (e.g. using SauceLabs Connect - you need to have a sc
 module.exports = function(karma) {
 
   var webdriverConfig = {
-    url: 'ondemand.saucelabs.com',
-    port: 80
+    hostname: 'ondemand.saucelabs.com',
+    port: 80,
+    user: 'USERNAME',
+    pwd: 'APIKEY'
   }
 
 
