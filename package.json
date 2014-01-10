@@ -20,7 +20,7 @@
     "Jack Bastow <jack.bastow@hindsightsoftware.co.uk>"
   ],
   "dependencies": {
-    "wd": "0.1.5"
+    "wd": "0.2.8"
   },
   "peerDependencies": {
     "karma": ">=0.9"
