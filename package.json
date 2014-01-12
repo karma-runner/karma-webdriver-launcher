@@ -17,7 +17,11 @@
   ],
   "author": "Alan Parkinson <alan.parkinson@hindsightsoftware.co.uk>",
   "contributors": [
-    "Jack Bastow <jack.bastow@hindsightsoftware.co.uk>"
+    "Alan Parkinson <alan.parkson@hindsightsoftware.co.uk>",
+    "Jack Bastow <jack.bastow@hindsightsoftware.co.uk>",
+    "charliedowler <charlie.dowler@hindsightsoftware.co.uk>",
+    "Charlie Dowler <charlie.dowler@hindsightsoftware.co.uk>",
+    "Vojta Jina <vojta.jina@gmail.com>"
   ],
   "dependencies": {
     "wd": "0.2.8"
