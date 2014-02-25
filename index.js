@@ -6,14 +6,33 @@ var WebDriverInstance = function (baseBrowserDecorator, args) {
     hostname: '127.0.0.1',
     port: 4444
   };
-  var spec = {
-    browserName: args.browserName,
-    version: args.version || '',
-    platform: args.platform || 'ANY',
-    tags: args.tags || [],
-    name: args.testName || 'Karma test'
-  };
   var self = this;
+  var spec = {};
+
+  Object.keys(args).forEach(function (key) {
+    var value = args[key];
+    switch (key) {
+    case 'browserName':
+      if (!value) throw new Error('browserName is required!');
+      break;
+    case 'platform':
+      if (!value) value = 'ANY';
+      break;
+    case 'name':
+      if (!value) value = 'Karma test';
+      break;
+    case 'tags':
+      if (!value) value = [];
+      break;
+    case 'version':
+      if (!value) value = '';
+      break;
+    case 'config':
+      // ignore
+      return;
+    }
+    spec[key] = value;
+  });
 
   baseBrowserDecorator(this);
 
