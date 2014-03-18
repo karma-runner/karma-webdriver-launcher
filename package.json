@@ -27,7 +27,7 @@
     "wd": "0.2.8"
   },
   "peerDependencies": {
-    "karma": ">=0.9"
+    "karma": ">=0.12"
   },
   "license": "MIT"
 }
