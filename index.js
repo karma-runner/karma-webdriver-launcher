@@ -19,13 +19,12 @@ var WebDriverInstance = function (baseBrowserDecorator, args) {
 
   this.name = spec.browserName + ' via Remote WebDriver';
 
-
-  this.kill = function(callback) {
+  this.on('kill', function(callback) {
     self.browser.quit(function() {
       console.log('Killed ' + spec.name + '.');
       callback();
     });
-  }
+  });
 
   this._start = function (url) {
     self.browser = wd.remote(config);
