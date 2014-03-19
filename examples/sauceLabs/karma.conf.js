@@ -7,7 +7,7 @@ module.exports = function (karma) {
     pwd: 'APIKEY'
   }
 
-  karma.set({
+  config.set({
     basePath: './',
     frameworks: ["jasmine"],
     reporters: ['progress'],
