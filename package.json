@@ -21,7 +21,8 @@
     "Jack Bastow <jack.bastow@hindsightsoftware.co.uk>",
     "charliedowler <charlie.dowler@hindsightsoftware.co.uk>",
     "Charlie Dowler <charlie.dowler@hindsightsoftware.co.uk>",
-    "Vojta Jina <vojta.jina@gmail.com>"
+    "Vojta Jina <vojta.jina@gmail.com>",
+    "persidskiy <persidskiy@yandex-team.ru>"
   ],
   "dependencies": {
     "wd": "0.2.8"
