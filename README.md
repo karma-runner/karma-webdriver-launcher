@@ -1,7 +1,7 @@
 karma-webdriver-launcher
 ========================
 
-A plugin for Karma 0.9.3 to launch Remote WebDriver instances
+A plugin for Karma 0.12 to launch Remote WebDriver instances
 
 ## Usage
 
@@ -24,7 +24,7 @@ module.exports = function(karma) {
 
   ...
 
-    karma.set({
+    config.set({
 
       ...
 	  
