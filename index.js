@@ -1,7 +1,9 @@
 var fs = require('fs');
 var wd = require('wd');
 
-var WebDriverInstance = function (baseBrowserDecorator, args) {
+var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
+  var log = logger.create('WebDriver');
+
   var config = args.config || {
     hostname: '127.0.0.1',
     port: 4444
@@ -21,7 +23,7 @@ var WebDriverInstance = function (baseBrowserDecorator, args) {
 
   this.on('kill', function(callback) {
     self.browser.quit(function() {
-      console.log('Killed ' + spec.name + '.');
+      log.info('Killed ' + spec.name + '.');
       callback();
     });
   });
@@ -45,7 +47,7 @@ WebDriverInstance.prototype = {
   ENV_CMD: 'WEBDRIVER_BIN'
 };
 
-WebDriverInstance.$inject = ['baseBrowserDecorator', 'args'];
+WebDriverInstance.$inject = ['baseBrowserDecorator', 'args', 'logger'];
 
 // PUBLISH DI MODULE
 module.exports = {
