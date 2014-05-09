@@ -29,10 +29,11 @@ var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
   });
 
   this._start = function (url) {
-    self.browser = wd.remote(config);
-    self.browser.init(spec, function () {
-      self.browser.get(url);
-    });
+    self.browser = wd.remote(config, 'promiseChain');
+
+    self.browser.init(spec)
+        .get(url)
+        .done();
   };
 };
 
