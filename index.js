@@ -24,6 +24,13 @@ var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
   this.on('kill', function(callback) {
     self.browser.quit(function() {
       log.info('Killed ' + spec.name + '.');
+
+      if (self.error === 'timeout') {
+          // This will trigger the
+          // launcher retry mechanism
+          self.emit('done');
+      }
+
       callback();
     });
   });
