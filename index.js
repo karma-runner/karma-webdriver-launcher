@@ -1,4 +1,3 @@
-var fs = require('fs');
 var wd = require('wd');
 
 var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
