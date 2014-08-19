@@ -5,7 +5,7 @@ module.exports = function (karma) {
     port: 80,
     user: 'USERNAME',
     pwd: 'APIKEY'
-  }
+  };
 
   config.set({
     basePath: './',
@@ -26,4 +26,4 @@ module.exports = function (karma) {
     ],
     singleRun: true
   });
-}
+};
