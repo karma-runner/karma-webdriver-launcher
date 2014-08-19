@@ -29,7 +29,7 @@ var WebDriverInstance = function (baseBrowserDecorator, args) {
   this._start = function (url) {
     self.browser = wd.remote(config);
     self.browser.init(spec, function () {
-      self.browser.get(url);
+      self.browser.get(url.replace(/(https{0,1}):\/\/localhost/, config.karmaHost ? '$1://' + config.karmaHost : '$1://localhost'));
     });
   };
 };
