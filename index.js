@@ -76,6 +76,9 @@ var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
     delete urlObj.search; //url.format does not want search attribute
     url = urlformat(urlObj);
 
+    log.debug('WebDriver config: ' + JSON.stringify(config));
+    log.debug('Browser capabilities: ' + JSON.stringify(spec));
+
     self.browser = wd.remote(config, 'promiseChain');
     self.browser.init(spec)
         .get(url)
