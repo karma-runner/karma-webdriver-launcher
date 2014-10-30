@@ -25,6 +25,7 @@
     "persidskiy <persidskiy@yandex-team.ru>"
   ],
   "dependencies": {
+    "lodash.assign": "^2.4.1",
     "wd": "0.2.8"
   },
   "peerDependencies": {
