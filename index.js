@@ -3,11 +3,13 @@ var urlparse = require('url').parse;
 var urlformat = require('url').format;
 
 var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
-  var log = logger.create('WebDriver');
+var log = logger.create('WebDriver');
+var os = require('os');
 
   var config = args.config || {
     hostname: '127.0.0.1',
-    port: 4444
+    port: 4444,
+	remoteHost: false
   };
   var self = this;
 
@@ -100,6 +102,25 @@ var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
         });
       }
     };
+    if (config.remoteHost) {
+        var ip = '';
+
+        var ifaces = os.networkInterfaces();
+        for (var dev in ifaces) {
+            var alias = 0;
+            ifaces[dev].forEach(function(details, ifaceName) {
+                if (details.family === 'IPv4' && details.address !== '127.0.0.1' && !details.internal) {
+                    ip = details.address;
+                    return;
+                }
+            });
+        }
+	    url = url.replace('localhost', ip);
+	}
+    self.browser = wd.remote(config);
+    self.browser.init(spec, function () {
+      self.browser.get(url);
+    });
   };
 
   // We can't really force browser to quit so just avoid warning about SIGKILL
