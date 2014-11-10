@@ -3,16 +3,17 @@ var urlparse = require('url').parse;
 var urlformat = require('url').format;
 
 var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
-var log = logger.create('WebDriver');
-var os = require('os');
-
+  var log = logger.create('WebDriver');
+  var os = require('os');
+  var ip = require('ip');
+  var self = this;
+  
   var config = args.config || {
     hostname: '127.0.0.1',
     port: 4444,
-	remoteHost: false
+    remoteHost: false
   };
-  var self = this;
-
+  
   // Intialize with default values
   var spec = {
     platform: 'ANY',
