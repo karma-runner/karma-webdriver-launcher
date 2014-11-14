@@ -1,6 +1,8 @@
 var wd = require('wd');
 
-var WebDriverInstance = function (baseBrowserDecorator, args) {
+var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
+  var log = logger.create('WebDriver');
+
   var config = args.config || {
     hostname: '127.0.0.1',
     port: 4444
@@ -43,19 +45,24 @@ var WebDriverInstance = function (baseBrowserDecorator, args) {
 
   this.name = spec.browserName + ' via Remote WebDriver';
 
-  this.on('kill', function(callback) {
-    self.browser.quit(function() {
-      console.log('Killed ' + spec.testName + '.');
-      callback();
-    });
-  });
+  this._start = function(url) {
+    self.browser = wd.remote(config, 'promiseChain');
+    self.browser.init(spec)
+        .get(url)
+        .done();
 
-  this._start = function (url) {
-    self.browser = wd.remote(config);
-    self.browser.init(spec, function () {
-      self.browser.get(url);
-    });
+    self._process = {
+      kill: function() {
+        self.browser.quit(function() {
+          log.info('Killed ' + spec.testName + '.');
+          self._onProcessExit(self.error ? -1 : 0, self.error);
+        });
+      }
+    };
   };
+
+  // We can't really force browser to quit so just avoid warning about SIGKILL
+  this._onKillTimeout = function(){};
 };
 
 WebDriverInstance.prototype = {
@@ -69,7 +76,7 @@ WebDriverInstance.prototype = {
   ENV_CMD: 'WEBDRIVER_BIN'
 };
 
-WebDriverInstance.$inject = ['baseBrowserDecorator', 'args'];
+WebDriverInstance.$inject = ['baseBrowserDecorator', 'args', 'logger'];
 
 // PUBLISH DI MODULE
 module.exports = {
