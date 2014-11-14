@@ -1,4 +1,3 @@
-var fs = require('fs');
 var wd = require('wd');
 
 var WebDriverInstance = function (baseBrowserDecorator, args) {
@@ -7,25 +6,27 @@ var WebDriverInstance = function (baseBrowserDecorator, args) {
     port: 4444
   };
   var self = this;
-  var spec = {};
+
+  // Intialize with default values
+  var spec = {
+    platform: 'ANY',
+    testName: 'Karma test',
+    tags: [],
+    version: ''
+  };
 
   Object.keys(args).forEach(function (key) {
     var value = args[key];
     switch (key) {
     case 'browserName':
-      if (!value) throw new Error('browserName is required!');
       break;
     case 'platform':
-      if (!value) value = 'ANY';
       break;
-    case 'name':
-      if (!value) value = 'Karma test';
+    case 'testName':
       break;
     case 'tags':
-      if (!value) value = [];
       break;
     case 'version':
-      if (!value) value = '';
       break;
     case 'config':
       // ignore
@@ -34,13 +35,17 @@ var WebDriverInstance = function (baseBrowserDecorator, args) {
     spec[key] = value;
   });
 
+  if (!spec.browserName) {
+    throw new Error('browserName is required!');
+  }
+
   baseBrowserDecorator(this);
 
   this.name = spec.browserName + ' via Remote WebDriver';
 
   this.on('kill', function(callback) {
     self.browser.quit(function() {
-      console.log('Killed ' + spec.name + '.');
+      console.log('Killed ' + spec.testName + '.');
       callback();
     });
   });
