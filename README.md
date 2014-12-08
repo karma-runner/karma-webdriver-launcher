@@ -34,7 +34,8 @@ module.exports = function(karma) {
 		  config: webdriverConfig,
 		  browserName: 'internet explorer',
 		  platform: 'Windows XP',
-		  version: '7',
+		  version: '10',
+		  'x-ua-compatible': 'IE=EmulateIE7',
 		  name: 'Karma'
 	    }
       },	  

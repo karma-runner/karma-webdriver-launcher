@@ -1,4 +1,6 @@
 var wd = require('wd');
+var urlparse = require('url').parse;
+var urlformat = require('url').format;
 
 var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
   var log = logger.create('WebDriver');
@@ -45,7 +47,35 @@ var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
 
   this.name = spec.browserName + ' via Remote WebDriver';
 
-  this._start = function(url) {
+  // Handle x-ua-compatible option same as karma-ie-launcher(copy&paste):
+  //
+  // Usage :
+  //   customLaunchers: {
+  //     IE9: {
+  //       base: 'WebDriver',
+  //       config: webdriverConfig,
+  //       browserName: 'internet explorer',
+  //       'x-ua-compatible': 'IE=EmulateIE9'
+  //     }
+  //   }
+  //
+  // This is done by passing the option on the url, in response the Karma server will
+  // set the following meta in the page.
+  //   <meta http-equiv="X-UA-Compatible" content="[VALUE]"/>
+  function handleXUaCompatible(args, urlObj) {
+    if (args['x-ua-compatible']) {
+      urlObj.query['x-ua-compatible'] = args['x-ua-compatible'];
+    }
+  }
+
+  this._start = function (url) {
+    var urlObj = urlparse(url, true);
+
+    handleXUaCompatible(spec, urlObj);
+
+    delete urlObj.search; //url.format does not want search attribute
+    url = urlformat(urlObj);
+
     self.browser = wd.remote(config, 'promiseChain');
     self.browser.init(spec)
         .get(url)
