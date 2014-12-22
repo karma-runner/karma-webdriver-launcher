@@ -1,6 +1,6 @@
 {
   "name": "karma-webdriver-launcher",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Karma plugin. Launcher for Remote WebDriver instances.",
   "main": "index.js",
   "scripts": {
