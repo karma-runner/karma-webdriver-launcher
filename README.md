@@ -27,18 +27,19 @@ module.exports = function(karma) {
     config.set({
 
       ...
-	  
+
       customLaunchers: {
         'IE7': {
           base: 'WebDriver',
-		  config: webdriverConfig,
-		  browserName: 'internet explorer',
-		  platform: 'Windows XP',
-		  version: '10',
-		  'x-ua-compatible': 'IE=EmulateIE7',
-		  name: 'Karma'
-	    }
-      },	  
+          config: webdriverConfig,
+          browserName: 'internet explorer',
+          platform: 'Windows XP',
+          version: '10',
+          'x-ua-compatible': 'IE=EmulateIE7',
+          name: 'Karma',
+          pseudoActivityInterval: 30000
+        }
+      },
 
       browsers: ['IE7'],
 
@@ -49,3 +50,7 @@ module.exports = function(karma) {
 
 ```
 
+### pseudoActivityInterval
+Interval in ms to do some activity to avoid killing session by timeout.
+
+If not set or set to `0` - no activity will be performed.
