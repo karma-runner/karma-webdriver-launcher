@@ -31,14 +31,14 @@ module.exports = function(karma) {
       customLaunchers: {
         'IE7': {
           base: 'WebDriver',
-		  config: webdriverConfig,
-		  browserName: 'internet explorer',
-		  platform: 'Windows XP',
-		  version: '10',
-		  'x-ua-compatible': 'IE=EmulateIE7',
-		  name: 'Karma',
+          config: webdriverConfig,
+          browserName: 'internet explorer',
+          platform: 'Windows XP',
+          version: '10',
+          'x-ua-compatible': 'IE=EmulateIE7',
+          name: 'Karma',
           pseudoActivityInterval: 30000
-	    }
+        }
       },
 
       browsers: ['IE7'],
