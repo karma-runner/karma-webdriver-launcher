@@ -33,10 +33,7 @@
     "Mark Trostler <mark@zzo.com>"
   ],
   "dependencies": {
-    "wd": "0.2.8"
-  },
-  "peerDependencies": {
-    "karma": ">=0.12"
+    "wd": "~0.3.11"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
