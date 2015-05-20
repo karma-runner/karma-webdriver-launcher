@@ -35,9 +35,6 @@
   "dependencies": {
     "wd": "~0.3.11"
   },
-  "peerDependencies": {
-    "karma": ">=0.12"
-  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-bump": "~0.0.7",
