@@ -16,10 +16,14 @@ var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
   
   // Intialize with default values
   var spec = {
-    platform: 'ANY',
-    testName: 'Karma test',
-    tags: [],
-    version: ''
+    browserName: args.browserName,
+    version: args.version || '',
+    platform: args.platform || 'ANY',
+    platformName: args.platformName,
+    platformVersion: args.platformVersion,
+    deviceName: args.deviceName,
+    tags: args.tags || [],
+    name: args.testName || 'Karma test'
   };
 
   Object.keys(args).forEach(function (key) {
