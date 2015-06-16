@@ -180,7 +180,7 @@ nodeconfig.json
 }
 ```
 
-4. insert grid server's info to karma-webdriver configs.
+4\. insert grid server's info to karma-webdriver configs.
 
 karma.conf.js
 
