@@ -19,9 +19,9 @@ var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
     browserName: args.browserName,
     version: args.version || '',
     platform: args.platform || 'ANY',
-    platformName: args.platformName,
-    platformVersion: args.platformVersion,
-    deviceName: args.deviceName,
+    platformName: args.platformName || '',
+    platformVersion: args.platformVersion || '',
+    deviceName: args.deviceName || '',
     tags: args.tags || [],
     name: args.testName || 'Karma test'
   };
