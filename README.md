@@ -3,7 +3,9 @@ karma-webdriver-launcher
 
 A plugin for Karma 0.12 to launch WebDriver instances
 
-You can also use remote WebDriver instance by setting true the "remoteHost" options.
+also, you can use remote WebDriver instance by setting true the "remoteHost" options.
+
+see below.
 
 ## Usage
 
@@ -73,14 +75,15 @@ see https://github.com/SeleniumHQ/selenium/wiki/Grid2
 - XCode iPhone Simulator (using appium)
 - Android Virtual Device Emulator (using appium)
 
-1. download Selenium Standalone Server and make it work grid mode.
+1\. download Selenium Standalone Server and make it work grid mode.
 
 ```bash
 java jar selenium-standalone-server.jar -role hub &
 ```
 
-2. setting VM machine that want to use test environments. (e.g. IE7-VM, IE10-VM)
-3. start Selenium Standalone Server(hub mode) in VM and make it connect to grid server.
+2\. setting VM machine that want to use test environments. (e.g. IE7-VM, IE10-VM)
+
+3\. start Selenium Standalone Server(hub mode) in VM and make it connect to grid server.
 
 #### Desktop
 
@@ -116,15 +119,15 @@ DefaultConfig.json (VM Machine. installed IE11, Chrome)
 
 #### Mobile
 
-1. install nodejs upper v0.12
-2. install appium
+install nodejs upper v0.12, install appium
 
 ```bash
 npm install -g appium
 ```
 
-3. install XCode iPheon Simulator, Android Virtual Device Emulator and prepare testing environments. see [appium](http://appium.io/slate/en/master/?ruby#setting-up-appium)
-4. run appium server
+install XCode iPheon Simulator, Android Virtual Device Emulator and prepare testing environments. see [appium](http://appium.io/slate/en/master/?ruby#setting-up-appium)
+
+run appium server
 
 my startup script.
 
