@@ -79,7 +79,8 @@ var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
     log.debug('WebDriver config: ' + JSON.stringify(config));
     log.debug('Browser capabilities: ' + JSON.stringify(spec));
 
-    self.browser = wd.remote(config, 'promiseChain').init(spec);
+    self.driver = wd.remote(config, 'promiseChain');
+    self.browser = self.driver.init(spec);
 
     var interval = args.pseudoActivityInterval && setInterval(function() {
       log.debug('Imitate activity');
@@ -93,7 +94,7 @@ var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
     self._process = {
       kill: function() {
         interval && clearInterval(interval);
-        self.browser.quit(function() {
+        self.driver.quit(function() {
           log.info('Killed ' + spec.testName + '.');
           self._onProcessExit(self.error ? -1 : 0, self.error);
         });
