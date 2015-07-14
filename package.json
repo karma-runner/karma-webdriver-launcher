@@ -18,20 +18,21 @@
   "author": "Alan Parkinson <alan.parkinson@hindsightsoftware.co.uk>",
   "contributors": [
     "Alan Parkinson <alan.parkson@hindsightsoftware.co.uk>",
+    "Matthew Smith <mtscout6@gmail.com>",
     "Jack Bastow <jack.bastow@hindsightsoftware.co.uk>",
     "Anton Usmansky <cody0@yandex-team.ru>",
-    "Matthew Smith <mtscout6@gmail.com>",
     "Mark Ethan Trostler <mark@zzo.com>",
     "Mark Trostler <mark@zzo.com>",
     "charliedowler <charlie.dowler@hindsightsoftware.co.uk>",
-    "Jaroslav Hejral <jaroslav.hejral@hp.com>",
-    "j0tunn <anton.usmansky@gmail.com>",
+    "Dr. Kibitz <info@drkibitz.com>",
+    "persidskiy <persidskiy@yandex-team.ru>",
     "Charlie Dowler <charlie.dowler@hindsightsoftware.co.uk>",
     "Sergey Belov <peimei@ya.ru>",
+    "Vladimir Alaev <scff@yandex-team.ru>",
     "Vojta Jina <vojta.jina@gmail.com>",
-    "persidskiy <persidskiy@yandex-team.ru>",
-    "Enrique Paredes <enrique@iknite.com>",
-    "Dr. Kibitz <info@drkibitz.com>"
+    "j0tunn <anton.usmansky@gmail.com>",
+    "Jaroslav Hejral <jaroslav.hejral@hp.com>",
+    "Enrique Paredes <enrique@iknite.com>"
   ],
   "dependencies": {
     "wd": "~0.3.11"
