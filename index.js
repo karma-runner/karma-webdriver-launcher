@@ -4,19 +4,26 @@ var urlformat = require('url').format;
 
 var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
   var log = logger.create('WebDriver');
-
+  var os = require('os');
+  var ip = require('ip');
+  var self = this;
+  
   var config = args.config || {
     hostname: '127.0.0.1',
-    port: 4444
+    port: 4444,
+    remoteHost: false
   };
-  var self = this;
-
+  
   // Intialize with default values
   var spec = {
-    platform: 'ANY',
-    testName: 'Karma test',
-    tags: [],
-    version: ''
+    browserName: args.browserName,
+    version: args.version || '',
+    platform: args.platform || 'ANY',
+    platformName: args.platformName || '',
+    platformVersion: args.platformVersion || '',
+    deviceName: args.deviceName || '',
+    tags: args.tags || [],
+    name: args.testName || 'Karma test'
   };
 
   Object.keys(args).forEach(function (key) {
@@ -95,11 +102,32 @@ var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
       kill: function() {
         interval && clearInterval(interval);
         self.driver.quit(function() {
-          log.info('Killed ' + spec.testName + '.');
+          log.info('Killed ' + spec.browserName + ' ' + spec.version + '.');
           self._onProcessExit(self.error ? -1 : 0, self.error);
         });
       }
     };
+
+    // if remoteHost options true then change url to priority NIC's ip addess.
+    if (config.remoteHost) {
+        var ip = '';
+
+        var ifaces = os.networkInterfaces();
+        for (var dev in ifaces) {
+            var alias = 0;
+            ifaces[dev].forEach(function(details, ifaceName) {
+                if (details.family === 'IPv4' && details.address !== '127.0.0.1' && !details.internal) {
+                    ip = details.address;
+                    return;
+                }
+            });
+        }
+	    url = url.replace('localhost', ip);
+	}
+    self.browser = wd.remote(config);
+    self.browser.init(spec, function () {
+      self.browser.get(url);
+    });
   };
 
   // We can't really force browser to quit so just avoid warning about SIGKILL
