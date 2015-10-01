@@ -4,19 +4,26 @@ var urlformat = require('url').format;
 
 var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
   var log = logger.create('WebDriver');
-
+  var os = require('os');
+  var ip = require('ip');
+  var self = this;
+  
   var config = args.config || {
     hostname: '127.0.0.1',
-    port: 4444
+    port: 4444,
+    remoteHost: false
   };
-  var self = this;
-
+  
   // Intialize with default values
   var spec = {
-    platform: 'ANY',
-    testName: 'Karma test',
-    tags: [],
-    version: ''
+    browserName: args.browserName,
+    version: args.version || '',
+    platform: args.platform || 'ANY',
+    platformName: args.platformName || '',
+    platformVersion: args.platformVersion || '',
+    deviceName: args.deviceName || '',
+    tags: args.tags || [],
+    name: args.testName || 'Karma test'
   };
 
   Object.keys(args).forEach(function (key) {
@@ -45,7 +52,7 @@ var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
 
   baseBrowserDecorator(this);
 
-  this.name = spec.browserName + ' via Remote WebDriver';
+  this.name = spec.browserName + spec.version + ' via Remote WebDriver';
 
   // Handle x-ua-compatible option same as karma-ie-launcher(copy&paste):
   //
@@ -69,12 +76,19 @@ var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
   }
 
   this._start = function (url) {
-    var urlObj = urlparse(url, true);
+    var urlObj = urlparse(url, true),
+        ipAddr;
 
     handleXUaCompatible(spec, urlObj);
 
     delete urlObj.search; //url.format does not want search attribute
     url = urlformat(urlObj);
+
+    if (config.remoteHost) {
+        ipAddr = ip.address();
+	    url = url.replace('localhost', ipAddr);
+        log.debug('Remote host feature worked: ' + ipAddr);
+    }
 
     log.debug('WebDriver config: ' + JSON.stringify(config));
     log.debug('Browser capabilities: ' + JSON.stringify(spec));
@@ -95,7 +109,7 @@ var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
       kill: function() {
         interval && clearInterval(interval);
         self.driver.quit(function() {
-          log.info('Killed ' + spec.testName + '.');
+          log.info('Killed "' + spec.browserName + spec.version + '" session.');
           self._onProcessExit(self.error ? -1 : 0, self.error);
         });
       }
