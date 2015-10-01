@@ -102,11 +102,13 @@ var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
       kill: function() {
         interval && clearInterval(interval);
         self.driver.quit(function() {
-          log.info('Killed ' + spec.testName + '.');
+          log.info('Killed ' + spec.browserName + ' ' + spec.version + '.');
           self._onProcessExit(self.error ? -1 : 0, self.error);
         });
       }
     };
+
+    // if remoteHost options true then change url to priority NIC's ip addess.
     if (config.remoteHost) {
         var ip = '';
 
