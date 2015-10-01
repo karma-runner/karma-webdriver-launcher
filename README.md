@@ -1,5 +1,4 @@
-karma-webdriver-launcher
-========================
+# karma-webdriver-launcher
 
 A plugin for Karma 0.12 to launch WebDriver instances
 
@@ -57,10 +56,11 @@ module.exports = function(karma) {
 ```
 
 ### pseudoActivityInterval
+
 Interval in ms to do some activity to avoid killing session by timeout.
 
 If not set or set to `0` - no activity will be performed.
-=======
+
 ### Creating private remote test automation system
 
 You can create your private remote test automation system.
