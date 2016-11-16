@@ -35,11 +35,11 @@
     "Enrique Paredes <enrique@iknite.com>"
   ],
   "dependencies": {
-    "wd": "~0.3.11"
+    "wd": "~1.0.0"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-bump": "~0.0.7",
+    "grunt": "~1.0.1",
+    "grunt-bump": "~0.8.0",
     "grunt-npm": "~0.0.2",
     "grunt-auto-release": "~0.0.2"
   },
