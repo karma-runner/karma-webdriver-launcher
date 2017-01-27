@@ -36,7 +36,7 @@
     "Enrique Paredes <enrique@iknite.com>"
   ],
   "dependencies": {
-    "wd": "^1.0.0"
+    "wd": "^1.1.2"
   },
   "devDependencies": {
     "grunt": "~1.0.1",
