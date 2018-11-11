@@ -1,6 +1,7 @@
 var wd = require('wd');
-var urlparse = require('url').parse;
-var urlformat = require('url').format;
+var urlModule = require('url');
+var urlparse = urlModule.parse;
+var urlformat = urlModule.format;
 
 var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
   var log = logger.create('WebDriver');
