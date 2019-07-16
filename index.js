@@ -80,22 +80,39 @@ var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
     log.debug('WebDriver config: ' + JSON.stringify(config));
     log.debug('Browser capabilities: ' + JSON.stringify(spec));
 
-    self.driver = wd.remote(config, 'promiseChain');
-    self.browser = self.driver.init(spec);
+    self.browser = wd.remote(config);
 
     var interval = args.pseudoActivityInterval && setInterval(function() {
       log.debug('Imitate activity');
       self.browser.title();
     }, args.pseudoActivityInterval);
 
-    self.browser
-        .get(url)
-        .done();
+    // With the "Promise-based" API from "wd", you can't actually handle
+    // rejections.  You can intercept them with .then(), but they still register
+    // as "unhandled rejections" in Karma, and the error messages are devoid of
+    // useful context.  So we use the older callback-based model instead.
+    self.browser.init(spec, function() {
+      self.browser.get(url, function(error) {
+        if (!error) {
+          return;
+        }
+
+        // Make sure the error log contains the spec, so that we can pin down
+        // issues to the specific Selenium node that failed.
+        log.error('WebDriver command failed', {
+          spec: spec,
+          error: error
+        });
+
+        // Now give up and quit.
+        self._process.kill();
+      });
+    });
 
     self._process = {
       kill: function() {
         interval && clearInterval(interval);
-        self.driver.quit(function() {
+        self.browser.quit(function() {
           log.info('Killed ' + spec.testName + '.');
           self._onProcessExit(self.error ? -1 : 0, self.error);
         });
