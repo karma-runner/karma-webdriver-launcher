@@ -92,6 +92,7 @@ var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
     // as "unhandled rejections" in Karma, and the error messages are devoid of
     // useful context.  So we use the older callback-based model instead.
     self.browser.init(spec, function() {
+      log.debug('Session ID: ' + self.browser.sessionID);
       self.browser.get(url, function(error) {
         if (!error) {
           return;
