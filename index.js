@@ -47,6 +47,7 @@ var WebDriverInstance = function (baseBrowserDecorator, args, logger) {
   baseBrowserDecorator(this);
 
   this.name = spec.browserName + ' via Remote WebDriver';
+  this.spec = spec;
 
   // Handle x-ua-compatible option same as karma-ie-launcher(copy&paste):
   //
